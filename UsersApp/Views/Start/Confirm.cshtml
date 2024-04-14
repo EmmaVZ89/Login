@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Confirm</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container mt-3">
+        @if (ViewBag.Response)
+        {
+            <div class="alert alert-success">
+                <p><b>Ready!</b>&nbsp;Your Account was confirmed. You can now access</p>
+                <a class="btn btn-success" href="@Url.Action("Login", "Start")">Log in</a>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger">
+                <p>Email could not be confirmed</p>
+            </div>
+        }
+    </div>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

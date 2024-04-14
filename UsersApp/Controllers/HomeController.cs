@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using UsersApp.DataDB.User;
 using UsersApp.Models;
+using UsersApp.Models.User;
 
 namespace UsersApp.Controllers
 {
@@ -15,7 +17,20 @@ namespace UsersApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var email = Request.Cookies["LoggedInEmail"];
+            var token = Request.Cookies["LoggedInToken"];
+
+            if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(token))
+            {
+                var userLogged = DBUser.ValidateLoggedUser(email, token);
+
+                if (userLogged != null)
+                {
+                    return View();
+                }
+            }
+
+            return RedirectToAction("Login", "Start");
         }
 
         public IActionResult Privacy()

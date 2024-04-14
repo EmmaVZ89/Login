@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Restore account</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="row justify-content-center mt-5">
+        <div class="col-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Restore account</h3>
+                </div>
+                <div class="card-body">
+
+                    @if (ViewBag.Restored == null)
+                    {
+
+                        <form action="@Url.Action("Restore", "Start" )" method="post">
+                            <p>Enter your email address and we will send you a link to reset your password</p>
+                           
+                            <div class="mb-3">
+                                <label>Email</label>
+                                <input type="email" class="form-control" name="email" value="@(ViewBag.Email != null ? ViewBag.Email : "")" required />
+                            </div>
+
+                            @if (ViewBag.Message != null)
+                            {
+                                <div class="alert alert-danger">
+                                    @ViewBag.Message
+                                </div>
+                            }
+
+                            <div class="mb-3">
+                                <div class="d-grid">
+                                    <button class="btn btn-primary" type="submit">Restore account</button>
+                                    <a class="btn btn-link" href="@Url.Action("Login", "Start" )">Back</a>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success">
+                            <p>Your password was reset, we sent you a message to your email to reset</p>
+                            <a class="btn btn-success" href="@Url.Action("Login", "Start" )">Log in</a>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
