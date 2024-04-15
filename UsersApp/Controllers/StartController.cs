@@ -34,6 +34,8 @@ namespace UsersApp.Controllers
                 {
                     userLogged.LastLoggedInAt = DateTime.Now;
 
+                    ViewBag.UserLogged = userLogged;
+
                     var result = DBUser.Update(userLogged);
                     if (result)
                     {
@@ -80,6 +82,8 @@ namespace UsersApp.Controllers
 
                     user.LastLoggedInAt = DateTime.Now;
 
+                    ViewBag.UserLogged = user;
+
                     var result = DBUser.Update(user);
                     if (result)
                     {
@@ -93,6 +97,16 @@ namespace UsersApp.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            ViewBag.UserLogged = null;
+            Response.Cookies.Delete("LoggedInEmail");
+            Response.Cookies.Delete("LoggedInToken");
+
+            return RedirectToAction("Login", "Start");
         }
 
         [HttpGet]

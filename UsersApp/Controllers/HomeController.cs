@@ -24,6 +24,8 @@ namespace UsersApp.Controllers
             {
                 var userLogged = DBUser.ValidateLoggedUser(email, token);
 
+                ViewBag.UserLogged = userLogged;
+
                 if (userLogged != null)
                 {
                     return View();
@@ -31,11 +33,6 @@ namespace UsersApp.Controllers
             }
 
             return RedirectToAction("Login", "Start");
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

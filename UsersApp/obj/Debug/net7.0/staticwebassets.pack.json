@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\UsersApp.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Note\\Desktop\\Proyectos ASP\\UsersApp\\UsersApp\\wwwroot\\Assets\\userDefault.png",
+      "PackagePath": "staticwebassets\\Assets\\userDefault.png"
+    },
+    {
       "Id": "C:\\Users\\Note\\Desktop\\Proyectos ASP\\UsersApp\\UsersApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

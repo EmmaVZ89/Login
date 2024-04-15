@@ -1,0 +1,37 @@
+﻿@model UsersApp.Models.User.UserDTO
+
+@{
+    Layout = null;
+}
+
+<button id="userPanelmodalBtn" style="display: none;" data-bs-toggle="modal" data-bs-target="#userPanel"></button>
+<div class="modal fade" id="userPanel" tabindex="-1" aria-labelledby="userPanelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-end">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                <h5 class="modal-title text-center text-white" id="userPanelLabel">User Profile</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="text-center">@Model.Email</p>
+                <div class="text-center">
+                    <img class="userPanel-img" src="~/Assets/userDefault.png" />
+                </div>
+                <p class="text-center"><strong>Hi, @Model.FirstName!</strong></p>
+                <div type="button" class="btn btn-info text-white">Edit account</div>
+            </div>
+            <a class="btn btn-link mb-3 text-start" href="@Url.Action("Restore", "Start")">Restore password</a>
+        </div>
+    </div>
+</div>
+<style>
+    .userPanel-img {
+        width: 7rem;
+        height: 7rem;
+    }
+</style>
+<script>
+    document.getElementById('user-img').addEventListener('click', function () {
+        document.getElementById('userPanelmodalBtn').click();
+    });
+</script>
