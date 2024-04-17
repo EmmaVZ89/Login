@@ -14,7 +14,10 @@
             </div>
             <div class="modal-body text-center">
                 <p class="text-center">@Model.Email</p>
-                <div class="text-center">
+@*                <form id="myDropzone" class="dropzone" action="/Upload/HandleUpload" method="post">
+*@                    <input type="file" id="filepondUserProfile" class="filepond" name="filepond" multiple data-max-files="3">
+@*                </form>
+*@                <div class="text-center">
                     <img class="userPanel-img" src="~/Assets/userDefault.png" />
                 </div>
                 <p class="text-center"><strong>Hi, @Model.FirstName!</strong></p>
@@ -34,4 +37,27 @@
     document.getElementById('user-img').addEventListener('click', function () {
         document.getElementById('userPanelmodalBtn').click();
     });
+</script>
+<script>
+    const inputElement = document.querySelector('input[type="file"]');
+    const pond = FilePond.create(inputElement, {
+        files: [
+            {
+                source: '~/Assets/userDefault.png', // Ruta del archivo predeterminado
+                options: {
+                    type: 'local', // Especifica que el archivo es local
+                }
+            }
+        ],
+        maxFiles: 3,
+        allowMultiple: true,
+        labelIdle: 'Arrastra y suelta tus archivos o <span class="filepond--label-action"> haz clic aquí </span>',
+        server: {
+            process: '/Upload/HandleUpload',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token }}'
+            }
+        }
+    });
+
 </script>
